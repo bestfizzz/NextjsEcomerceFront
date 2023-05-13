@@ -7,8 +7,13 @@ import { useEffect, useState } from 'react';
 
 export default function Home() {
   const [products, setProducts] = useState([])
-  const [slideVisibility, setSlideVisibility] = useState(true)
+  const [slideVisibility, setSlideVisibility] = useState()
   useEffect(() => {
+    if (window.innerWidth <= 690) {
+      setSlideVisibility(false)
+    } else {
+      setSlideVisibility(true)
+    }
     window.addEventListener(
       "resize",
       () => {

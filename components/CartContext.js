@@ -27,7 +27,7 @@ export default function CartContextProvider({ children }) {
             )
     }
     const wipeCart = ()=>{
-        ls.clear()
+        ls.removeItem("cart")
         setCartProducts([])
     }
     const getCost=()=>{

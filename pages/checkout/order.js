@@ -7,13 +7,13 @@ export default function CheckOut() {
         <Layout>
             <div className='flex items-start'>
                 <Breadcrumbs separator=">" className='bg-transparent w-full self-start'>
-                    <a href="#" className="opacity-60">
+                    <span className="opacity-60 text">
                         Cart
-                    </a>
-                    <a href="#">Order</a>
-                    <a href="#" className="opacity-60">
+                    </span>
+                    <span >Order</span>
+                    <span className="opacity-60">
                         Payment
-                    </a>
+                    </span>
                 </Breadcrumbs>
             </div>
             <div className='flex w-full flex-col sm:flex-row'>

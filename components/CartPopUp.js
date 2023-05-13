@@ -21,6 +21,11 @@ export default function CartPopUp({showInMobile}) {
     const handleOpen = () => setOpen((cur) => !cur);
     const router = useRouter()
     useEffect(() => {
+        if (window.innerWidth < 960) {
+            setIsSmallScreen(true)
+        } else {
+            setIsSmallScreen(false)
+        }
         window.addEventListener(
             "resize",
             () => {
@@ -65,7 +70,7 @@ export default function CartPopUp({showInMobile}) {
                     <ItemsInCart />
                 </DialogBody>
                 <DialogFooter className="justify-between gap-2 border-t border-blue-gray-50">
-                    <Button onClick={() => router.push('/checkout')} variant="gradient" size="sm" fullWidth className="mb-2">
+                    <Button onClick={() => router.push('/checkout/order')} variant="gradient" size="sm" fullWidth className="mb-2">
                         <span>Check Out</span>
                     </Button>
                 </DialogFooter>

@@ -1,24 +1,26 @@
-import {collection,addDoc } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import createPaymentUrl from "@/lib/vnpay";
 const orders = collection(db, 'orders');
 
-const postOrder = async(data) => {
-    return await addDoc(orders,data)
- }
+const postOrder = async (data) => {
+    return await addDoc(orders, data)
+}
 
 export default function handler(req, res) {
     const { method } = req
     if (method === 'POST') {
-        const data =req.body
+        // const data =req.body
+        const data={
+            name: req.body.name,
+            email: req.body.email,
+            phone: req.body.phone,
+            address: req.body.address,
+            cost: req.body.cost,
+            order: req.body.order,
+            transactionID: req.body.transactionID||'',
+        }
         data.createdAt = new Date()
-        //const data={
-        //     name: req.body.name,
-        //     email: req.body.email,
-        //     phone: req.body.phone,
-        //     address: req.body.address,
-        //     cost: req.body.cost,
-        //     order: req.body.order,
-        //}
         return postOrder(data)
             .then((data) => {
                 return res.status(200).send(data);
