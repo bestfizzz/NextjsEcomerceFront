@@ -30,7 +30,7 @@ export default function ProductCard({ product }) {
                 </div>
                 <div className="flex items-center justify-between mb-2">
                     <Typography variant="small" color="gray" className="font-normal opacity-75">
-                        {product.description}
+                        Category
                     </Typography>
                     <Typography variant="small" color="gray" className="font-normal opacity-75">
                         {product.category}
