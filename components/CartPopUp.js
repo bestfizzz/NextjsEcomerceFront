@@ -42,8 +42,8 @@ export default function CartPopUp({showInMobile}) {
                 }
             }
         );
-    }
-    )
+    },[])
+    
     return (
         <React.Fragment>
             {isSmallScreen && showInMobile ?
