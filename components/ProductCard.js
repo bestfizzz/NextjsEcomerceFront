@@ -9,36 +9,43 @@ import {
 import { useContext } from "react";
 import { CartContext } from "@/components/CartContext"
 import { numberWithCommas } from "./numberWithCommas";
+import Link from "next/link";
 export default function ProductCard({ product }) {
-    const {addProductToCart}=useContext(CartContext)
+    const { addProductToCart } = useContext(CartContext)
     return (
-        <Card className="w-80">
-            <CardHeader shadow={false} floated={false} className="h-64">
-                <img
-                    src={product.images[0]}
-                    className="w-full h-full object-cover"
-                />
-            </CardHeader>
-            <CardBody>
-                <div className="flex items-center justify-between mb-2">
-                    <Typography color="blue-gray" className="font-medium">
-                        {product.title}
-                    </Typography>
-                    <Typography color="blue-gray" className="font-medium">
-                        {numberWithCommas(product.price) + '₫'}
-                    </Typography>
-                </div>
-                <div className="flex items-center justify-between mb-2">
-                    <Typography variant="small" color="gray" className="font-normal opacity-75">
-                        Category
-                    </Typography>
-                    <Typography variant="small" color="gray" className="font-normal opacity-75">
-                        {product.category}
-                    </Typography>
-                </div>
+        <Card className="w-80 h-fit">
+            <Link href={'/products/' + product._id}>
+                <CardHeader shadow={false} floated={false} className="h-64">
+                    <img
+                        src={product.images[0]}
+                        className="w-full h-full object-cover"
+                    />
+                </CardHeader>
+                <CardBody className="pb-0">
+                    <div className="flex justify-between mb-2">
+                        <Typography color="blue-gray" className="font-bold text-sm h-[40px]">
+                            {
+                            product.title.length>45?
+                            product.title.slice(0, 50)+'...'
+                            :
+                            product.title}
+                        </Typography>
+                        <Typography color="blue-gray" className="font-medium">
+                            {numberWithCommas(product.price) + '₫'}
+                        </Typography>
+                    </div>
+                    <div className="flex items-center justify-between mb-2">
+                        <Typography variant="small" color="gray" className="font-normal opacity-75">
+                            Category
+                        </Typography>
+                        <Typography variant="small" color="gray" className="font-normal opacity-75">
+                            {product.category}
+                        </Typography>
+                    </div>
 
-            </CardBody>
-            <CardFooter className="pt-0">
+                </CardBody>
+            </Link>
+            <CardFooter className="pt-6">
                 <Button
                     type="button"
                     onClick={() => addProductToCart(product)}

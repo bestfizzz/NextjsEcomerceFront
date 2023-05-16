@@ -11,8 +11,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 
 export default function OrderForm() {
-    const { cartProducts, getCost, wipeCart } = useContext(CartContext)
-    const router = useRouter()
+    const { getCost,cartProducts } = useContext(CartContext)
     const [ticked, setTicked] = useState(false)
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -21,13 +20,11 @@ export default function OrderForm() {
     const [cost, setCost] = useState(0)
     useEffect(() => {
         setCost(() => getCost())
-    }, [])
-
+    }, [cartProducts])
     const submitOrder = async (ev) => {
         ev.preventDefault()
         if (ticked && cost > 0) {
             const links = (await axios.post('/api/payment', { cost: cost })).data
-            console.log(links.url)
             if (links.url) {
                 // Redirect the user to the specified URL
                 const ls = typeof window !== "undefined" ? localStorage : null
@@ -53,6 +50,7 @@ return (
                 <Input size="lg" value={address} onChange={ev => setAddress(ev.target.value)} required label="Address" />
             </div>
             <Checkbox
+                value={ticked}
                 label={
                     (
                         <Typography

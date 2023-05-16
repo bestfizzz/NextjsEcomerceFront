@@ -1,7 +1,7 @@
 import Layout from '@/components/Layout';
 import ProductCard from '@/components/ProductCard';
 import SlideShow from '@/components/SlideShow';
-import { Typography } from '@material-tailwind/react';
+import { Typography, Spinner } from '@material-tailwind/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
@@ -43,9 +43,14 @@ export default function Home() {
         xl:grid-cols-5
         xxl:grid-cols-6
         ">
-        {!products ? '' : products.map((product, index) => (
-          <ProductCard key={index} product={product} />
-        ))}
+        {!products ?
+          <div className="flex justify-center">
+            <Spinner className="h-12 w-12" />
+          </div>
+          :
+          products.map((product, index) => (
+            <ProductCard key={index} product={product} />
+          ))}
       </div>
     </Layout>
   )

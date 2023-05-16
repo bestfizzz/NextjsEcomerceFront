@@ -69,7 +69,7 @@ export default function Nav() {
         <>
             <Navbar className="sticky inset-0 z-10 h-max max-w-full rounded-none py-2 px-4 md:px-8 md:py-4">
                 <div className="flex items-center justify-between text-blue-gray-900">
-                    <Typography as="a" href="#" className="mr-4 cursor-pointer py-1.5 font-medium">
+                    <Typography as="a" href="/" className="mr-4 cursor-pointer py-1.5 font-medium">
                         Material Tailwind
                     </Typography>
                     <div className="mr-4 hidden md:block">{navList}</div>

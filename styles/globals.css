@@ -1,7 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -26,7 +32,7 @@ body {
     rgb(var(--background-start-rgb));
 }
 .scrollbar::-webkit-scrollbar {
-  width: 20px;
+  width: 15px;
   height: 20px;
 }
 

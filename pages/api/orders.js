@@ -1,6 +1,5 @@
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import createPaymentUrl from "@/lib/vnpay";
 const orders = collection(db, 'orders');
 
 const postOrder = async (data) => {
