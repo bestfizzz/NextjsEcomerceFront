@@ -43,7 +43,7 @@ export default function CartPopUp({showInMobile}) {
             }
         );
     },[])
-    
+
     return (
         <React.Fragment>
             {isSmallScreen && showInMobile ?
@@ -60,7 +60,7 @@ export default function CartPopUp({showInMobile}) {
                     </svg>
                     <span className="">Cart ({getNumberOfProducts()}) </span>
                 </Button>}
-            <Dialog size="xs" className="w-[90%] max-w-[690px] md:h-[525px]" open={open} handler={handleOpen}>
+            <Dialog size="xs" className="w-[99%] max-w-[690px] md:h-[525px]" open={open} handler={handleOpen}>
                 <DialogHeader className="justify-between">
                     <Typography className="ml-2" variant="h2">Cart</Typography>
                     <IconButton
@@ -72,7 +72,7 @@ export default function CartPopUp({showInMobile}) {
                         <XMarkIcon strokeWidth={2} className="h-5 w-5" />
                     </IconButton>
                 </DialogHeader>
-                <DialogBody>
+                <DialogBody className="px-2">
                     <ItemsInCart />
                 </DialogBody>
                 <DialogFooter className="justify-between gap-2 md:pt-5 ">

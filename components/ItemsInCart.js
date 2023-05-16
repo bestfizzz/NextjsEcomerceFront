@@ -15,15 +15,15 @@ export default function ItemsInCart() {
     }
     return (
         <div class="scale-100 sm:scale-110 md:scale-120 ">
-            <div className={cartProducts.length > 2 ? showScrollbar : noScrollbar}>
+            <div className={cartProducts.length > 3  ? showScrollbar : noScrollbar}>
                 {cartProducts.map(function (product) {
                     return (
-                        <div key={product._id} className="flex gap-4 p-3 w-full">
+                        <div key={product._id} className="flex gap-2 sm:gap-4 sm:p-3 w-full">
                             <img onClick={()=>directToProduct(product._id)} className=" w-16 h-16 cursor-pointer" src={product.images[0]} />
                             <div className="flex flex-col w-full gap-y-4 h-full">
                                 <div className="flex justify-between w-full">
                                     <div className="flex">
-                                        <p onClick={()=>directToProduct(product._id)} className="cursor-pointer text-slate-500 text-sm font-medium max-w-[10ch] sm:max-w-[15ch] md:max-w-[20ch]">
+                                        <p onClick={()=>directToProduct(product._id)} className="cursor-pointer text-slate-500 text-sm font-medium max-w-[16ch] sm:max-w-[30ch] md:max-w-[40ch]">
                                             {
                                                 product.title.length > 60 ?
                                                     product.title.slice(0, 60) + '...'
