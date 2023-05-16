@@ -2,6 +2,7 @@ import ItemsInCart from '@/components/ItemsInCart';
 import Layout from '@/components/Layout';
 import OrderForm from '@/components/OrderForm';
 import { Breadcrumbs, Typography } from "@material-tailwind/react";
+import Link from 'next/link';
 import { useState } from 'react';
 export default function CheckOut() {
     const [isHovered, setIsHovered] = useState(false);
@@ -19,9 +20,9 @@ export default function CheckOut() {
             </div>
             <div className='flex items-start'>
                 <Breadcrumbs separator=">" className='bg-transparent w-full self-start pl-0 md:pl-6'>
-                    <a href='/' className="opacity-60 text">
+                    <Link href='/' className="opacity-60 text">
                         Home
-                    </a>
+                    </Link>
                     <span >Order</span>
                     <span className="opacity-60">
                         Payment
