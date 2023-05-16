@@ -76,9 +76,9 @@ export default function ProductPage() {
                             </svg>
                         </Button>
                         <Typography variant='h3'>Properties</Typography>
-                        {productInfo.properties ? Object.keys(productInfo.properties).map(key => {
+                        {productInfo.properties ? Object.keys(productInfo.properties).map((key,index) => {
                             return (
-                                <Typography className="ml-4 font-thin" variant='h5'>- {capitalize(key)}: {productInfo.properties[key]}</Typography>
+                                <Typography key={index} className="ml-4 font-thin" variant='h5'>- {capitalize(key)}: {productInfo.properties[key]}</Typography>
                             )
                         })
                             :
