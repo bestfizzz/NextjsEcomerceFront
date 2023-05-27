@@ -7,7 +7,7 @@ import {
     DialogFooter,
     IconButton,
     Typography,
-    MenuItem,
+    Alert,
 } from "@material-tailwind/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import ItemsInCart from "./ItemsInCart";
@@ -15,7 +15,7 @@ import { useRouter } from "next/router";
 import { CartContext } from "./CartContext";
 
 export default function CartPopUp({showInMobile}) {
-    const { getNumberOfProducts } = useContext(CartContext)
+    const { getNumberOfProducts, cartProducts} = useContext(CartContext)
     const [open, setOpen] = React.useState(false);
     const [isSmallScreen, setIsSmallScreen] = useState()
     const handleOpen = () => setOpen((cur) => !cur);

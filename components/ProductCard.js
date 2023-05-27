@@ -10,7 +10,7 @@ import { useContext } from "react";
 import { CartContext } from "@/components/CartContext"
 import { numberWithCommas } from "./numberWithCommas";
 import Link from "next/link";
-export default function ProductCard({ product }) {
+export default function ProductCard({ product,setOpenAlert }) {
     const { addProductToCart } = useContext(CartContext)
     return (
         <Card className="w-80 h-fit">
@@ -48,7 +48,10 @@ export default function ProductCard({ product }) {
             <CardFooter className="pt-6">
                 <Button
                     type="button"
-                    onClick={() => addProductToCart(product)}
+                    onClick={() => {
+                        addProductToCart(product)
+                        setOpenAlert(true)
+                    }}
                     ripple={false}
                     fullWidth={true}
                     className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:shadow-none hover:scale-105 focus:shadow-none focus:scale-105 active:scale-100"

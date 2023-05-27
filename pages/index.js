@@ -1,13 +1,22 @@
 import Layout from '@/components/Layout';
 import ProductCard from '@/components/ProductCard';
 import SlideShow from '@/components/SlideShow';
-import { Typography, Spinner } from '@material-tailwind/react';
+import { Typography, Spinner, Alert } from '@material-tailwind/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 export default function Home() {
   const [products, setProducts] = useState([])
   const [slideVisibility, setSlideVisibility] = useState()
+  const [openAlert, setOpenAlert] = useState(false);
+  useEffect(() => {
+    if (openAlert == true) {
+      setInterval(() => {
+        setOpenAlert(false);
+      }, 3000)
+    }
+  }, [openAlert])
+
   useEffect(() => {
     if (window.innerWidth <= 690) {
       setSlideVisibility(false)
@@ -49,9 +58,20 @@ export default function Home() {
           </div>
           :
           products.map((product, index) => (
-            <ProductCard key={index} product={product} />
+            <ProductCard key={index} product={product} setOpenAlert={setOpenAlert} />
           ))}
       </div>
+      <Alert
+        open={openAlert}
+        onClose={() => setOpenAlert(false)}
+        animate={{
+          mount: { y: 0 },
+          unmount: { y: 100 },
+        }}
+        className=' w-[95%] top-[15%] fixed'
+      >
+        Cart is updated
+      </Alert>
     </Layout>
   )
 }

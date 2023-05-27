@@ -2,7 +2,7 @@ import { Carousel } from "@material-tailwind/react";
 
 export default function ProductImages({ images }) {
     return (
-        <Carousel className="rounded-xl max-w-[300px] max-h-[300px]">
+        <Carousel className="rounded-xl min-w-[300px] h-[300px] sm:h-[400px] sm:w-[400px]">
             {images?.map((image,index) => {
                 return (
                     <img

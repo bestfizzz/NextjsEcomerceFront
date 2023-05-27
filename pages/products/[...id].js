@@ -2,7 +2,7 @@ import Layout from "@/components/Layout";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
-import { Typography, Spinner, Button } from "@material-tailwind/react";
+import { Typography, Spinner, Button,Alert } from "@material-tailwind/react";
 import ProductImages from "@/components/ProductImages";
 import { CartContext } from "@/components/CartContext";
 
@@ -12,7 +12,15 @@ export default function ProductPage() {
     const { addProductToCart } = useContext(CartContext)
     const [productInfo, setProductInfo] = useState()
     const [quantityValue, setQuantityValue] = useState(0);
-
+    const [openAlert, setOpenAlert] = useState(false);
+    useEffect(() => {
+        if (openAlert == true) {
+            setInterval(() => {
+                setOpenAlert(false);
+            }, 3000)
+        }
+    }, [openAlert])
+    
     useEffect(() => {
         if (!id) {
             return
@@ -31,6 +39,7 @@ export default function ProductPage() {
 
     const addNumberOfProductsToCart = (product, quantityValue) => {
         addProductToCart(product, quantityValue)
+        setOpenAlert(true)
     }
 
     function capitalize(s) {
@@ -44,11 +53,11 @@ export default function ProductPage() {
                         <ProductImages images={productInfo.images} />
                     </div>
                     <div className="flex flex-col mx-0 mt-0 sm:mx-8">
-                        <Typography variant='h3' className="max-w-[30ch]">
+                        <Typography variant='h3' className="max-w-[40ch] font-[500]">
                         { capitalize(productInfo.title)}
                         </Typography>
-                        <Typography variant='lead'>{productInfo.price}₫</Typography>
-                        <Typography variant='h1'>Category: {productInfo.category}</Typography>
+                        <Typography variant='lead' className="font-thin">{productInfo.category}</Typography>
+                        <Typography variant='h4'>{productInfo.price}₫</Typography>
                         <div className="flex items-center">
                             <button
                                 className="px-2 py-1 bg-gray-200 text-gray-600 rounded-l"
@@ -75,7 +84,7 @@ export default function ProductPage() {
                                 <path d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" />
                             </svg>
                         </Button>
-                        <Typography variant='h3'>Properties</Typography>
+                        <Typography variant='h4'>Properties</Typography>
                         {productInfo.properties ? Object.keys(productInfo.properties).map((key,index) => {
                             return (
                                 <Typography key={index} className="ml-4 font-thin" variant='h5'>- {capitalize(key)}: {productInfo.properties[key]}</Typography>
@@ -85,6 +94,7 @@ export default function ProductPage() {
                             <Typography variant='h5'>No properties</Typography>
                         }
                         <div>
+                            <Typography variant='h4'>Description</Typography>
                             <Typography variant='small' className="max-w-[70ch]">{productInfo.description}</Typography>
                         </div>
                     </div>
@@ -94,6 +104,17 @@ export default function ProductPage() {
                     <Spinner className="h-12 w-12" />
                 </div>
             }
+            <Alert
+                open={openAlert}
+                onClose={() => setOpenAlert(false)}
+                animate={{
+                    mount: { y: 0 },
+                    unmount: { y: 100 },
+                }}
+                className=' w-[95%] top-[15%] fixed'
+            >
+                Cart is updated
+            </Alert>
         </Layout>
     )
 }
