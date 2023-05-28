@@ -52,15 +52,15 @@ export default function Home() {
         xl:grid-cols-5
         xxl:grid-cols-6
         ">
-        {!products ?
-          <div className="flex justify-center">
-            <Spinner className="h-12 w-12" />
-          </div>
-          :
+        {products &&
           products.map((product, index) => (
             <ProductCard key={index} product={product} setOpenAlert={setOpenAlert} />
           ))}
       </div>
+      {!products &&
+      <div className="flex justify-center w-full mt-10">
+            <Spinner className="h-12 w-12" />
+        </div>}
       <Alert
         open={openAlert}
         onClose={() => setOpenAlert(false)}
