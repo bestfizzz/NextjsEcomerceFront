@@ -12,12 +12,13 @@ import { numberWithCommas } from "./numberWithCommas";
 import Link from "next/link";
 export default function ProductCard({ product,setOpenAlert }) {
     const { addProductToCart } = useContext(CartContext)
+    console.log(product.images[0])
     return (
         <Card className="w-80 h-fit">
             <Link href={'/products/' + product._id}>
                 <CardHeader shadow={false} floated={false} className="h-64">
                     <img
-                        src={product.images[0]}
+                        src={product.images[0]?product.images[0]:"https://via.placeholder.com/300x300"}
                         className="w-full h-full object-cover"
                     />
                 </CardHeader>
